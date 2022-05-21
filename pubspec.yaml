@@ -1,6 +1,6 @@
 name: device_plugin
-description: A new Device Flutter plugin
-version: 0.0.1
+description: Device Flutter plugin Support Android and iOS
+version: 0.0.2
 homepage: https://github.com/coolxinxin/device_plugin
 
 environment:

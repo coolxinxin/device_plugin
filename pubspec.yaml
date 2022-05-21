@@ -1,7 +1,7 @@
 name: device_plugin
 description: A new Device Flutter plugin
 version: 0.0.1
-homepage:
+homepage: https://github.com/coolxinxin/device_plugin
 
 environment:
   sdk: ">=2.15.0-233.0.dev <3.0.0"

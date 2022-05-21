@@ -37,9 +37,40 @@ public class SwiftDevicePlugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     if(call.method.elementsEqual("getPlatformVersion")){
            result("iOS " + UIDevice.current.systemVersion)
-       }else if(call.method.elementsEqual("init")){
+       }
+       else if(call.method.elementsEqual("init")){
            self.openTime = currentTime()
            self.batteryLevel = battery()
+       }
+       else if(call.method.elementsEqual("getPower")){
+            result(battery())
+       }
+       else if(call.method.elementsEqual("getBrands")){
+            result("Apple")
+       }
+       else if(call.method.elementsEqual("getModel")){
+            result(UIDevice.current.modelName)
+       }
+       else if(call.method.elementsEqual("getCpuModel")){
+            result(UIDevice.current.getCPUName())
+       }
+       else if(call.method.elementsEqual("getCpuCores")){
+            result("6")
+       }
+       else if(call.method.elementsEqual("isEmulator")){
+            result(UIDevice.Platform.isSimulator)
+       }
+       else if(call.method.elementsEqual("getMemory")){
+            result([
+                "freeMemory":UIDevice.memoryUsage().free,
+                "totalMemory":UIDevice.physicalMemory()
+            ])
+       }
+       else if(call.method.elementsEqual("getSpace")){
+            result([
+                "freeSpace":UIDevice.diskFreeSpace(),
+                "totalSpace":UIDevice.diskTotalSpace()
+            ])
        }
        else if(call.method.elementsEqual("getDevice")){
             result([

@@ -22,7 +22,6 @@ import android.text.format.Formatter
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import java.io.File
 import java.io.FileFilter
 import java.net.NetworkInterface
@@ -170,8 +169,12 @@ object DeviceUtils {
             null,
             IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         )
-        return intent?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)!! * 100 /
-                intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+        return if (intent == null) {
+            -1
+        } else {
+            intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) /
+                    intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+        }
     }
 
     /**
@@ -206,18 +209,65 @@ object DeviceUtils {
     }
 
 
+    fun getMemory(context: Context): HashMap<String, Long> {
+        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val memoryInfo = ActivityManager.MemoryInfo()
+        manager.getMemoryInfo(memoryInfo)
+        val totalMemory = memoryInfo.totalMem
+        val freeMemory = memoryInfo.availMem
+        val hashMap = HashMap<String, Long>()
+        hashMap["freeMemory"] = freeMemory
+        hashMap["totalMemory"] = totalMemory
+        return hashMap
+    }
+
+    fun getSpace(): HashMap<String, Long> {
+        val file = Environment.getExternalStorageDirectory()
+        val statFs = StatFs(file.path)
+        val blockSizeLong = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            statFs.blockSizeLong
+        } else {
+            statFs.blockSize.toLong()
+        }
+        val blockCountLong = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            statFs.blockCountLong
+        } else {
+            statFs.blockCount.toLong()
+        }
+        val availableBlocksLong = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            statFs.availableBlocksLong
+        } else {
+            statFs.availableBlocks.toLong()
+        }
+        val hashMap = HashMap<String, Long>()
+        hashMap["freeSpace"] = availableBlocksLong * blockSizeLong
+        hashMap["totalSpace"] = blockCountLong * blockSizeLong
+        return hashMap
+    }
+
     /**
      * 获取Rom
      *
      * @return
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     fun getRomInfo(context: Context): String {
         val file = Environment.getExternalStorageDirectory()
         val statFs = StatFs(file.path)
-        val blockSizeLong = statFs.blockSizeLong
-        val blockCountLong = statFs.blockCountLong
-        val availableBlocksLong = statFs.availableBlocksLong
+        val blockSizeLong = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            statFs.blockSizeLong
+        } else {
+            statFs.blockSize.toLong()
+        }
+        val blockCountLong = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            statFs.blockCountLong
+        } else {
+            statFs.blockCount.toLong()
+        }
+        val availableBlocksLong = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            statFs.availableBlocksLong
+        } else {
+            statFs.availableBlocks.toLong()
+        }
         return Formatter.formatFileSize(context, availableBlocksLong * blockSizeLong) + "/" +
                 Formatter.formatFileSize(context, blockCountLong * blockSizeLong)
     }

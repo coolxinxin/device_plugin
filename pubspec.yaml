@@ -1,6 +1,6 @@
 name: device_plugin
-description: Device Flutter plugin Support Android and iOS
-version: 0.0.2
+description: Device Flutter plugin Support Android and iOS(Can get Power, Brands, Model, CPU, Memory, Space, etc.)
+version: 0.0.3
 homepage: https://github.com/coolxinxin/device_plugin
 
 environment:

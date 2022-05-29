@@ -368,8 +368,8 @@ object DeviceUtils {
     /**
      * 获取设备应用安装列表
      */
-    fun getAppList(context: Context?): List<HashMap<String, Any>> {
-        val mapList = ArrayList<HashMap<String, Any>>()
+    fun getAppList(context: Context?): List<HashMap<String, Any?>> {
+        val mapList = ArrayList<HashMap<String, Any?>>()
         context ?: return mapList
         val pm = context.packageManager
         val list = pm.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES)
@@ -378,7 +378,7 @@ object DeviceUtils {
             val packageName = packageInfo.packageName
             val isSYS = isSystemApp(packageInfo)
             if (appName.isNotEmpty() && packageName.isNotEmpty()) {
-                val map = HashMap<String, Any>()
+                val map = HashMap<String, Any?>()
                 map["firstTime"] = formatTime(packageInfo.firstInstallTime)
                 map["lastTime"] = formatTime(packageInfo.lastUpdateTime)
                 map["name"] = appName

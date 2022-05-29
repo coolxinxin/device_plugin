@@ -4,14 +4,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'device_plugin'
-  s.version          = '0.0.1'
+  s.version          = '0.0.3'
   s.summary          = 'A new Device Flutter plugin'
   s.description      = <<-DESC
 A new Device Flutter plugin
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/coolxinxin/device_plugin'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Your Company' => '2438565661@qq.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'

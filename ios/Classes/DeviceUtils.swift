@@ -54,10 +54,10 @@ public extension UIDevice{
             case "iPhone13,2":                              return "iPhone 12"
             case "iPhone13,3":                              return "iPhone 12 Pro"
             case "iPhone13,4":                              return "iPhone 12 Pro Max"
-            case "iPhone14,1":                              return "iPhone 13 mini"
-            case "iPhone14,2":                              return "iPhone 13"
-            case "iPhone14,3":                              return "iPhone 13 Pro"
-            case "iPhone14,4":                              return "iPhone 13 Pro Max"
+            case "iPhone14,4":                              return "iPhone 13 mini"
+            case "iPhone14,5":                              return "iPhone 13"
+            case "iPhone14,2":                              return "iPhone 13 Pro"
+            case "iPhone14,3":                              return "iPhone 13 Pro Max"
             case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
             case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
             case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"
@@ -131,8 +131,8 @@ public extension UIDevice{
             case "iPhone12,8":                              return ["A13":"2.65 GHz"]
             case "iPhone13,2","iPhone13,1","iPhone13,3":    return ["A14":"2.99 GHz"]
             case "iPhone13,4":                              return ["A14":"3.1 GHz"]
-            case "iPhone14,2","iPhone14,1","iPhone14,3":    return ["A15":"2.2 GHz"]
-            case "iPhone14,4":                              return ["A15":"3.23 GHz"]
+            case "iPhone14,2","iPhone14,5","iPhone14,4":    return ["A15":"2.2 GHz"]
+            case "iPhone14,3":                              return ["A15":"3.23 GHz"]
     //            ipad
             case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return ["A5":"1.0 GHz"]
             case "iPad3,1", "iPad3,2", "iPad3,3":           return ["A5X":"1.0 GHz"]

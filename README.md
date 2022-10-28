@@ -1,5 +1,14 @@
 # device_plugin
 
+### 使用
+
+```
+flutter pub add device_plugin
+```
+```
+dependencies:
+  device_plugin: any
+```
 
 ### 一个获取设备信息的flutter插件,支持获取Android设备信息和App列表 适配Android10以上 [Android具体实现](https://github.com/coolxinxin/device_plugin/blob/master/android/src/main/kotlin/com/leos/device_plugin/DeviceUtils.kt)
 
